@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<form method="POST" enctype="multipart/form-data" >
+    {% csrf_token %}
+    {{ form.as_ul }}
+    <input type="submit" value="Subir" />
+</form>
+
+{% if result %}
+{% for obj in result %}
+<p>El producto {{ obj.1 }}, {{ obj.2 }} actualizó su precio a {{ obj.3 }}</p>
+{% endfor %}
+{% endif %}
+
+{% endblock %}
