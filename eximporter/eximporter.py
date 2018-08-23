@@ -5,7 +5,7 @@
 import csv
 import xlrd
 from openpyxl import load_workbook, reader
-from utils import DictUnicodeWriter
+from .utils import DictUnicodeWriter
 
 class ExImporter(object):
     """
