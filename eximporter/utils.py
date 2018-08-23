@@ -1,13 +1,17 @@
 # -*- coding:utf-8 -*-
 import csv
 import codecs
-import cStringIO
+
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 
 class DictUnicodeWriter(object):
 
     def __init__(self, f, fieldnames, dialect=csv.excel, encoding="utf-8", **kwargs):
         # Redirect output to a queue
-        self.queue = cStringIO.StringIO()
+        self.queue = StringIO.StringIO()
         self.writer = csv.DictWriter(self.queue, fieldnames, dialect=dialect, **kwargs)
         self.stream = f
         self.encoder = codecs.getincrementalencoder(encoding)()
